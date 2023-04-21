@@ -1,0 +1,19 @@
+.MainForm {
+  &__wordsList {
+    padding-left: -1em;
+  }
+
+  &__lettersInput {
+    width: 1em;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+  }
+
+  &__submitButton {
+    background-color: peru;
+    border-radius: 7px;
+  }
+}
