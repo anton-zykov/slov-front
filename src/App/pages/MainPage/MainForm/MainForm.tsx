@@ -43,7 +43,7 @@ const MainForm: React.FC<MainFormProps> = ({
         username,
         userAnswers: task?.map(
           (
-            wordItem: { word: { incorrectWord: string; _id: string } },
+            wordItem: { word: { incorrectWord: string; id: string } },
             index
           ) => {
             const userAnswer = wordItem.word.incorrectWord.replace(
@@ -53,7 +53,7 @@ const MainForm: React.FC<MainFormProps> = ({
 
             return {
               userAnswer: userAnswer,
-              id: wordItem.word._id,
+              id: wordItem.word.id,
             };
           }
         ),

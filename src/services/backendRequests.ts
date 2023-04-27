@@ -34,7 +34,7 @@ export type getOneUserResponse = {
     age: number;
     correctWord: string;
     incorrectWord: string;
-    _id: string;
+    id: string;
   };
 }[];
 
