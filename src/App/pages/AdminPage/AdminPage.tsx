@@ -2,7 +2,9 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import AddNewUserForm from './AddNewUserForm';
 import styles from './AdminPage.module.scss';
+import UserStatistics from './UserStatistics';
 
 const AdminPage: React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +16,10 @@ const AdminPage: React.FC = () => {
 
   return (
     <div>
-      <div>This is an admin page.</div>
+      <h3>Добавить нового ученика.</h3>
+      <AddNewUserForm />
+      <h3>Статистика по ученику.</h3>
+      <UserStatistics />
       <button onClick={handleLogout}>Выход</button>
     </div>
   );

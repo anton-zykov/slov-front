@@ -2,6 +2,15 @@ import axios from 'axios';
 
 const baseURL = 'http://localhost:3003/api/main/';
 
+export type addNewUserProps = {
+  username: string;
+};
+
+export type addNewUserResponse = {
+  username: string;
+  id: string;
+};
+
 export type loginProps = {
   username: string;
 };
@@ -34,6 +43,13 @@ export type sendUserAnswersResponse = {
   correct: boolean;
   correctWord: string;
 }[];
+
+export const addNewUser = async ({ username }: addNewUserProps) => {
+  const response = await axios.post<addNewUserResponse>(baseURL + 'users/', {
+    username,
+  });
+  return response.data;
+};
 
 export const login = async ({ username }: loginProps) => {
   const response = await axios.get<boolean>(baseURL + 'users/', {
