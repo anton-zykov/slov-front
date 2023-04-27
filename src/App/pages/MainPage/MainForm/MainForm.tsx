@@ -4,6 +4,7 @@ import {
   getOneUser,
   getOneUserResponse,
   sendUserAnswers,
+  sendUserAnswersResponse,
 } from 'services/backendRequests';
 
 import styles from './MainForm.module.scss';
@@ -21,6 +22,9 @@ const MainForm: React.FC<MainFormProps> = ({ username }) => {
 
   const [userLetters, setUserLetters] = React.useState<string[]>(
     new Array(4).fill('')
+  );
+  const [answers, setAnswers] = React.useState<sendUserAnswersResponse | null>(
+    null
   );
 
   const handleChange = (
@@ -53,7 +57,7 @@ const MainForm: React.FC<MainFormProps> = ({ username }) => {
             };
           }
         ),
-      });
+      }).then(setAnswers);
     }
   };
 
@@ -72,6 +76,14 @@ const MainForm: React.FC<MainFormProps> = ({ username }) => {
                 onChange={(event) => handleChange(event, index)}
               />
               {wordParts[1]}
+              {answers && (
+                <span>
+                  {' \u2192 ' +
+                    (answers[index].correct
+                      ? 'OK'
+                      : answers[index].correctWord)}
+                </span>
+              )}
             </li>
           );
         })}

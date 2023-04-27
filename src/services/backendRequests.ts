@@ -29,6 +29,12 @@ export type getOneUserResponse = {
   };
 }[];
 
+export type sendUserAnswersResponse = {
+  id: string;
+  correct: boolean;
+  correctWord: string;
+}[];
+
 export const login = async ({ username }: loginProps) => {
   const response = await axios.get<boolean>(baseURL + 'users/', {
     params: {
@@ -56,7 +62,7 @@ export const sendUserAnswers = async ({
   username,
   userAnswers,
 }: sendUserAnswersProps) => {
-  const response = await axios.put(
+  const response = await axios.put<sendUserAnswersResponse>(
     baseURL,
     { userWords: userAnswers },
     {
@@ -66,5 +72,5 @@ export const sendUserAnswers = async ({
     }
   );
 
-  return response;
+  return response.data;
 };
