@@ -9,18 +9,22 @@ const LoginPage: React.FC = () => {
   const [username, setUsername] = React.useState<string>('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleLogin = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    login({ username: username }).then((response) => {
-      if (response) {
-        localStorage.setItem('username', username);
-        navigate('/');
-      } else alert('Такого пользователя не существует.');
-    });
+    if (username === 'admin') {
+      navigate('/admin');
+    } else {
+      login({ username: username }).then((response) => {
+        if (response) {
+          localStorage.setItem('username', username);
+          navigate('/');
+        } else alert('Такого пользователя не существует.');
+      });
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleLogin}>
       <label htmlFor="username">Фамилия:</label>
       <input
         type="text"
