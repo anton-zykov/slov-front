@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { getOneUser, getOneUserResponse } from 'services/backendRequests';
 
 import MainForm from './MainForm';
 import styles from './MainPage.module.scss';
@@ -19,17 +20,32 @@ const MainPage: React.FC = () => {
     );
   }
 
+  const [task, setTask] = React.useState<getOneUserResponse | null>(null);
+  const recieveNewTask = () => {
+    getOneUser({ username }).then(setTask);
+  };
+
+  React.useEffect(recieveNewTask, []);
+
   const handleLogout: React.MouseEventHandler<HTMLButtonElement> = () => {
     localStorage.removeItem('username');
     navigate('/login');
   };
 
-  return (
-    <div>
-      <MainForm username={username} />
-      <button onClick={handleLogout}>Сменить пользователя</button>
-    </div>
-  );
+  if (task) {
+    return (
+      <div>
+        <MainForm
+          username={username}
+          task={task}
+          recieveNewTask={recieveNewTask}
+        />
+        <button onClick={handleLogout}>Сменить пользователя</button>
+      </div>
+    );
+  }
+
+  return <div>Задание загружается...</div>;
 };
 
 export default MainPage;

@@ -11,15 +11,15 @@ import styles from './MainForm.module.scss';
 
 type MainFormProps = {
   username: string;
+  task: getOneUserResponse;
+  recieveNewTask: VoidFunction;
 };
 
-const MainForm: React.FC<MainFormProps> = ({ username }) => {
-  const [d, setd] = React.useState<getOneUserResponse | null>(null);
-
-  React.useEffect(() => {
-    getOneUser({ username }).then(setd);
-  }, []);
-
+const MainForm: React.FC<MainFormProps> = ({
+  username,
+  task,
+  recieveNewTask,
+}) => {
   const [userLetters, setUserLetters] = React.useState<string[]>(
     new Array(4).fill('')
   );
@@ -38,10 +38,10 @@ const MainForm: React.FC<MainFormProps> = ({ username }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    if (d) {
+    if (task) {
       sendUserAnswers({
         username,
-        userAnswers: d?.map(
+        userAnswers: task?.map(
           (
             wordItem: { word: { incorrectWord: string; _id: string } },
             index
@@ -61,10 +61,16 @@ const MainForm: React.FC<MainFormProps> = ({ username }) => {
     }
   };
 
+  const handleNewTask: React.MouseEventHandler<HTMLButtonElement> = () => {
+    setUserLetters(userLetters.map(() => ''));
+    setAnswers(null);
+    recieveNewTask();
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <ol className={styles.MainForm__wordsList}>
-        {d?.map((w: { word: { incorrectWord: string } }, index) => {
+        {task?.map((w: { word: { incorrectWord: string } }, index) => {
           const wordParts = w.word.incorrectWord.split('-');
           return (
             <li key={w.word.incorrectWord}>
@@ -91,6 +97,7 @@ const MainForm: React.FC<MainFormProps> = ({ username }) => {
       <button type="submit" className={styles.MainForm__submitButton}>
         Готово
       </button>
+      {answers && <button onClick={handleNewTask}>Новые слова</button>}
     </form>
   );
 };
