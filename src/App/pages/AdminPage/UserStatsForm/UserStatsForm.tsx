@@ -12,6 +12,8 @@ const UserStatsForm: React.FC<UserStatsFormProps> = ({ setUserStats }) => {
   const [username, setUsername] = React.useState<string>('');
   const [onlyHighFrequency, setOnlyHighFrequency] =
     React.useState<boolean>(true);
+  const [highFrequencyLevel, setHighFrequencyLevel] =
+    React.useState<number>(15);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     event
@@ -21,7 +23,7 @@ const UserStatsForm: React.FC<UserStatsFormProps> = ({ setUserStats }) => {
       const response = await getOneUser({ username, all: true });
       setUserStats(
         onlyHighFrequency
-          ? response.filter((wordEntity) => wordEntity.frequency > 15)
+          ? response.filter((w) => w.frequency > highFrequencyLevel)
           : response
       );
     } catch (e: unknown) {
@@ -38,7 +40,15 @@ const UserStatsForm: React.FC<UserStatsFormProps> = ({ setUserStats }) => {
             checked={onlyHighFrequency}
             onChange={() => setOnlyHighFrequency(!onlyHighFrequency)}
           />
-          Показывать только слова с частотой больше 15.
+          Показывать только слова с частотой больше{' '}
+          <input
+            type="text"
+            value={highFrequencyLevel}
+            onChange={(event) =>
+              setHighFrequencyLevel(Number(event.target.value))
+            }
+          />
+          .
         </label>
       </div>
       <input
