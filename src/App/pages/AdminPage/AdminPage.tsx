@@ -1,7 +1,10 @@
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { getOneUserResponse } from 'services/backendRequests';
+import {
+  getOneUserResponse,
+  getOneUserTrainingTimesResponse,
+} from 'services/backendRequests';
 
 import AddNewUserForm from './AddNewUserForm';
 import styles from './AdminPage.module.scss';
@@ -10,6 +13,8 @@ import UserStatsForm from './UserStatsForm';
 
 const AdminPage: React.FC = () => {
   const [userStats, setUserStats] = React.useState<getOneUserResponse>([]);
+  const [userTrainingTimes, setUserTrainingTimes] =
+    React.useState<getOneUserTrainingTimesResponse>([]);
   const navigate = useNavigate();
 
   const handleLogout: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -22,8 +27,11 @@ const AdminPage: React.FC = () => {
       <h3>Добавить нового ученика.</h3>
       <AddNewUserForm />
       <h3>Статистика по ученику.</h3>
-      <UserStatsForm setUserStats={setUserStats} />
-      <UserStats userStats={userStats} />
+      <UserStatsForm
+        setUserStats={setUserStats}
+        setUserTrainingTimes={setUserTrainingTimes}
+      />
+      <UserStats userStats={userStats} userTrainingTimes={userTrainingTimes} />
       <button onClick={handleLogout}>Выход</button>
     </div>
   );

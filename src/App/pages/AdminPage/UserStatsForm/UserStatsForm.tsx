@@ -1,14 +1,25 @@
 import React from 'react';
 
-import { getOneUser, getOneUserResponse } from 'services/backendRequests';
+import {
+  getOneUser,
+  getOneUserResponse,
+  getOneUserTrainingTimes,
+  getOneUserTrainingTimesResponse,
+} from 'services/backendRequests';
 
 import styles from './UserStatsForm.module.scss';
 
 type UserStatsFormProps = {
   setUserStats: React.Dispatch<React.SetStateAction<getOneUserResponse>>;
+  setUserTrainingTimes: React.Dispatch<
+    React.SetStateAction<getOneUserTrainingTimesResponse>
+  >;
 };
 
-const UserStatsForm: React.FC<UserStatsFormProps> = ({ setUserStats }) => {
+const UserStatsForm: React.FC<UserStatsFormProps> = ({
+  setUserStats,
+  setUserTrainingTimes,
+}) => {
   const [username, setUsername] = React.useState<string>('');
   const [onlyHighFrequency, setOnlyHighFrequency] =
     React.useState<boolean>(true);
@@ -25,6 +36,12 @@ const UserStatsForm: React.FC<UserStatsFormProps> = ({ setUserStats }) => {
         onlyHighFrequency
           ? response.filter((w) => w.frequency > highFrequencyLevel)
           : response
+      );
+      const response2 = await getOneUserTrainingTimes({ username });
+      setUserTrainingTimes(
+        response2.map((stringDateObj) => ({
+          date: new Date(stringDateObj.date),
+        }))
       );
     } catch (e: unknown) {
       alert(e);

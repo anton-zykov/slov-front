@@ -20,6 +20,10 @@ export type getOneUserProps = {
   all?: boolean;
 };
 
+export type getOneUserTrainingTimesProps = {
+  username: string;
+};
+
 export type sendUserAnswersProps = {
   username: string;
   userAnswers: {
@@ -36,6 +40,10 @@ export type getOneUserResponse = {
     incorrectWord: string;
     id: string;
   };
+}[];
+
+export type getOneUserTrainingTimesResponse = {
+  date: Date;
 }[];
 
 export type sendUserAnswersResponse = {
@@ -68,6 +76,19 @@ export const getOneUser = async ({
     params: {
       username: username,
       all: String(all),
+    },
+  });
+
+  return response.data;
+};
+
+export const getOneUserTrainingTimes = async ({
+  username,
+}: getOneUserTrainingTimesProps) => {
+  const response = await axios.get<getOneUserTrainingTimesResponse>(baseURL, {
+    params: {
+      username: username,
+      trainingTimes: 'true',
     },
   });
 

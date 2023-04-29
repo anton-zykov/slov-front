@@ -1,20 +1,38 @@
 import React from 'react';
 
-import { getOneUserResponse } from 'services/backendRequests';
+import {
+  getOneUserResponse,
+  getOneUserTrainingTimesResponse,
+} from 'services/backendRequests';
 
 type UserStatsProps = {
   userStats: getOneUserResponse;
+  userTrainingTimes: getOneUserTrainingTimesResponse;
 };
 
-const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
+const UserStats: React.FC<UserStatsProps> = ({
+  userStats,
+  userTrainingTimes,
+}) => {
   return (
-    <ul>
-      {userStats.map((wordAndFreq) => (
-        <li key={wordAndFreq.word.id}>
-          {wordAndFreq.word.correctWord + ', частота ' + wordAndFreq.frequency}
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {userStats.map((wordAndFreq) => (
+          <li key={wordAndFreq.word.id}>
+            {wordAndFreq.word.correctWord +
+              ', частота ' +
+              wordAndFreq.frequency}
+          </li>
+        ))}
+      </ul>
+      <ul>
+        {userTrainingTimes.map((training) => (
+          <li key={String(training.date)}>
+            {training.date.toDateString() + ' ' + training.date.toTimeString()}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
