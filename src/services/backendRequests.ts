@@ -11,6 +11,12 @@ export type addNewUserResponse = {
   id: string;
 };
 
+export type assignWordsBasedOnAgeProps = {
+  username: string;
+  age: number;
+  frequency: number;
+};
+
 export type loginProps = {
   username: string;
 };
@@ -57,6 +63,25 @@ export const addNewUser = async ({ username }: addNewUserProps) => {
     username,
   });
   return response.data;
+};
+
+export const assignWordsBasedOnAge = async ({
+  username,
+  age,
+  frequency,
+}: assignWordsBasedOnAgeProps) => {
+  await axios.put(
+    baseURL + 'users/',
+    {
+      age: age,
+      frequency: frequency,
+    },
+    {
+      params: {
+        username: username,
+      },
+    }
+  );
 };
 
 export const login = async ({ username }: loginProps) => {

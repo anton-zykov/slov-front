@@ -24,9 +24,9 @@ const AdminPage: React.FC = () => {
 
   return (
     <div>
-      <h3>Добавить нового ученика.</h3>
+      <h3>Добавить нового ученика</h3>
       <AddNewUserForm />
-      <h3>Статистика по ученику.</h3>
+      <h3>Статистика по ученику</h3>
       <UserStatsForm
         setUserStats={setUserStats}
         setUserTrainingTimes={setUserTrainingTimes}

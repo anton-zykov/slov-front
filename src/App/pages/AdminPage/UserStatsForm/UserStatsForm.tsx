@@ -50,29 +50,30 @@ const UserStatsForm: React.FC<UserStatsFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            checked={onlyHighFrequency}
-            onChange={() => setOnlyHighFrequency(!onlyHighFrequency)}
-          />
-          Показывать только слова с частотой больше{' '}
-          <input
-            type="text"
-            value={highFrequencyLevel}
-            onChange={(event) =>
-              setHighFrequencyLevel(Number(event.target.value))
-            }
-          />
-          .
-        </label>
-      </div>
-      <input
-        type="text"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
+      <label>
+        <input
+          type="checkbox"
+          checked={onlyHighFrequency}
+          onChange={() => setOnlyHighFrequency(!onlyHighFrequency)}
+        />
+        Показывать только слова с частотой больше{' '}
+        <input
+          type="text"
+          value={highFrequencyLevel}
+          onChange={(event) =>
+            setHighFrequencyLevel(Number(event.target.value))
+          }
+        />
+        .
+      </label>
+      <label>
+        Фамилия
+        <input
+          type="text"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </label>
       <button type="submit">Поиск ученика</button>
     </form>
   );
