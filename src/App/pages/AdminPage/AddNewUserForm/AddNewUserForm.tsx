@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from 'components/Button';
 import { addNewUser, assignWordsBasedOnAge } from 'services/backendRequests';
 
 import styles from './AddNewUser.module.scss';
@@ -49,7 +50,7 @@ const AddNewUserForm: React.FC = () => {
           onChange={(event) => setAge(Number(event.target.value))}
         />
       </label>
-      <button type="submit">Создать ученика</button>
+      <Button type="submit">Создать ученика</Button>
     </form>
   );
 };

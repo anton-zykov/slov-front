@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from 'components/Button';
 import { useNavigate } from 'react-router-dom';
 import {
   getOneUserResponse,
@@ -23,7 +24,7 @@ const AdminPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={styles.adminPage}>
       <h3>Добавить нового ученика</h3>
       <AddNewUserForm />
       <h3>Статистика по ученику</h3>
@@ -32,7 +33,7 @@ const AdminPage: React.FC = () => {
         setUserTrainingTimes={setUserTrainingTimes}
       />
       <UserStats userStats={userStats} userTrainingTimes={userTrainingTimes} />
-      <button onClick={handleLogout}>Выход</button>
+      <Button onClick={handleLogout}>Выход</Button>
     </div>
   );
 };

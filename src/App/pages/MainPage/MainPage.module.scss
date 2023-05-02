@@ -1,3 +1,11 @@
-.MainPage {
+@use 'styles/mixins.module.scss' as mxn;
 
+.MainPage {
+  @include mxn.contentPositioning;
+  max-width: 400px;
+
+  &__logoutButton {
+    margin: 0;
+    width: 100%;
+  }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from 'components/Button';
 import { useNavigate } from 'react-router-dom';
 import { login } from 'services/backendRequests';
 
@@ -24,18 +25,21 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <label htmlFor="username">Фамилия:</label>
-      <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
-      <button type="submit" className={styles.LoginPage__submitButton}>
-        Продолжить
-      </button>
-    </form>
+    <div className={styles.LoginPage}>
+      <form onSubmit={handleLogin}>
+        <label htmlFor="username">Фамилия:</label>
+        <input
+          type="text"
+          className={styles.LoginPage__usernameInput}
+          id="username"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+        <Button type="submit" className={styles.LoginPage__submitButton}>
+          Продолжить
+        </Button>
+      </form>
+    </div>
   );
 };
 

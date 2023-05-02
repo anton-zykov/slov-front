@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Button } from 'components/Button';
+import { Loader } from 'components/Loader';
 import { useNavigate } from 'react-router-dom';
 import { getOneUser, getOneUserResponse } from 'services/backendRequests';
 
@@ -34,18 +36,23 @@ const MainPage: React.FC = () => {
 
   if (task) {
     return (
-      <div>
+      <div className={styles.MainPage}>
         <MainForm
           username={username}
           task={task}
           recieveNewTask={recieveNewTask}
         />
-        <button onClick={handleLogout}>Сменить пользователя</button>
+        <Button
+          onClick={handleLogout}
+          className={styles.MainPage__logoutButton}
+        >
+          Сменить пользователя
+        </Button>
       </div>
     );
   }
 
-  return <div>Задание загружается...</div>;
+  return <Loader />;
 };
 
 export default MainPage;

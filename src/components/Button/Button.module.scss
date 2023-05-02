@@ -1,0 +1,26 @@
+@use 'styles/variables.module.scss' as var;
+@use 'styles/mixins.module.scss' as mxn;
+
+.button {
+  position: relative;
+  box-sizing: border-box;
+  padding: auto 14px 0;
+  border: var.$color-red;
+  border-radius: var.$global-border-radius;
+  @include mxn.font-medium;
+  line-height: 25px;
+  background: var.$color-button-background;
+  color: var.$color-button-text;
+  @include mxn.shadow;
+  transition: box-shadow 0.3s ease-out 100ms;
+
+  &:hover:enabled {
+    cursor: pointer;
+    box-shadow: 0 0 2px 2px rgba(72, 171, 224, 0.5);
+  }
+  
+  &:disabled {
+    color: var.$color-button-text-disabled;
+  }
+}
+

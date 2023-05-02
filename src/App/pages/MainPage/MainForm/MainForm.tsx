@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { Button } from 'components/Button';
 import {
-  getOneUser,
   getOneUserResponse,
   sendUserAnswers,
   sendUserAnswersResponse,
@@ -32,7 +32,9 @@ const MainForm: React.FC<MainFormProps> = ({
     index: number
   ): void => {
     setUserLetters([
-      ...userLetters.map((l, i) => (i !== index ? l : event.target.value)),
+      ...userLetters.map((l, i) =>
+        i !== index ? l : event.target.value.toLowerCase()
+      ),
     ]);
   };
 
@@ -80,24 +82,43 @@ const MainForm: React.FC<MainFormProps> = ({
                 className={styles.MainForm__lettersInput}
                 value={userLetters[index]}
                 onChange={(event) => handleChange(event, index)}
+                disabled={!!answers}
               />
               {wordParts[1]}
               {answers && (
                 <span>
-                  {' \u2192 ' +
-                    (answers[index].correct
-                      ? 'OK'
-                      : answers[index].correctWord)}
+                  {' \u2192 '}
+                  {answers[index].correct ? (
+                    <span className={styles.MainForm__checkResult_correct}>
+                      OK
+                    </span>
+                  ) : (
+                    <span className={styles.MainForm__checkResult_incorrect}>
+                      {answers[index].correctWord}
+                    </span>
+                  )}
                 </span>
               )}
             </li>
           );
         })}
       </ol>
-      <button type="submit" className={styles.MainForm__submitButton}>
-        Готово
-      </button>
-      {answers && <button onClick={handleNewTask}>Новые слова</button>}
+      <div className={styles.MainForm__buttonsBlock}>
+        <Button
+          type="submit"
+          className={styles.MainForm__submitButton}
+          disabled={!!answers}
+        >
+          Готово
+        </Button>
+        <Button
+          onClick={handleNewTask}
+          className={styles.MainForm__newWordsButton}
+          disabled={!answers}
+        >
+          Новые слова
+        </Button>
+      </div>
     </form>
   );
 };

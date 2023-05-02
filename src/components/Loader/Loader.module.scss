@@ -1,0 +1,13 @@
+@use 'styles/mixins.module.scss' as mxn;
+
+.Loaders {
+  @include mxn.loader(1);
+}
+
+.Loaderm {
+  @include mxn.loader(2);
+}
+
+.Loaderl {
+  @include mxn.loader(3);
+}

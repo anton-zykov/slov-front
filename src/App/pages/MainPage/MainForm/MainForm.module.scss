@@ -1,10 +1,13 @@
+@use 'styles/mixins.module.scss' as mxn;
+
 .MainForm {
   &__wordsList {
-    padding-left: -1em;
+    margin: 0 0 16px;
   }
 
   &__lettersInput {
     width: 1em;
+    font-size: inherit;
     text-align: center;
     border: 0;
     outline: 0;
@@ -12,8 +15,25 @@
     border-bottom: 1px solid black;
   }
 
-  &__submitButton {
-    background-color: peru;
-    border-radius: 7px;
+  &__buttonsBlock {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  // &__submitButton {}
+  // &__newWordsButton {}
+
+  &__checkResult {
+    &_correct {
+      @include mxn.animationFadeIn(1s);
+      color: green;
+    }
+
+    &_incorrect {
+      @include mxn.animationFadeIn(1s);
+      color: red;
+    }
   }
 }

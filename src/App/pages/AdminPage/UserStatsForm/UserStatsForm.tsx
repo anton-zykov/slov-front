@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from 'components/Button';
 import {
   getOneUser,
   getOneUserResponse,
@@ -74,7 +75,7 @@ const UserStatsForm: React.FC<UserStatsFormProps> = ({
           onChange={(event) => setUsername(event.target.value)}
         />
       </label>
-      <button type="submit">Поиск ученика</button>
+      <Button type="submit">Поиск ученика</Button>
     </form>
   );
 };

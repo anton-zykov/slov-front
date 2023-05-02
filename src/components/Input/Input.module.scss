@@ -1,0 +1,20 @@
+@use 'styles/variables.module.scss' as var;
+@use 'styles/mixins.module.scss' as mxn;
+
+.input {
+  position: relative;
+  width: 100%;
+  border: transparent;
+  border-radius: var.$global-border-radius;
+  padding: 10px;
+  @include mxn.font-tiny;
+  color: var.$color-black;
+  background: var.$color-bright-pink;
+  @include mxn.background-color-transition(0.5s);
+  @include mxn.shadow;
+
+  &:focus {
+    background: var.$color-pink;
+    outline: none;
+  }
+}
