@@ -33,24 +33,32 @@ const AddNewUserForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Фамилия
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </label>
-      <label>
-        Класс
-        <input
-          type="number"
-          value={age ? age : ''}
-          onChange={(event) => setAge(Number(event.target.value))}
-        />
-      </label>
-      <Button type="submit">Создать ученика</Button>
+    <form onSubmit={handleSubmit} className={styles.AddNewUserForm}>
+      <div>
+        <label>
+          Фамилия
+          <input
+            type="text"
+            className={styles.AddNewUserForm__newUsernameInput}
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Класс
+          <input
+            type="number"
+            className={styles.AddNewUserForm__ageInput}
+            value={age ? age : ''}
+            onChange={(event) => setAge(Number(event.target.value))}
+          />
+        </label>
+      </div>
+      <Button type="submit" className={styles.AddNewUserForm__submitButton}>
+        Создать ученика
+      </Button>
     </form>
   );
 };

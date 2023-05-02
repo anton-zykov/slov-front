@@ -6,12 +6,7 @@
 
   &__usernameInput {
     width: calc(100% - 100px);
-    margin-left: 0.5em;
-    font-size: inherit;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid black;
+    @include mxn.lineInput;
   }
 
   &__submitButton {

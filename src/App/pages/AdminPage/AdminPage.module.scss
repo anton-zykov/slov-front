@@ -1,6 +1,11 @@
-@use 'styles/variables.module.scss' as var;
 @use 'styles/mixins.module.scss' as mxn;
 
-.adminPage {
+.AdminPage {
   @include mxn.contentPositioning;
+  max-width: 500px;
+
+  &__logoutButton {
+    margin: 0;
+    width: 100%;
+  }
 }

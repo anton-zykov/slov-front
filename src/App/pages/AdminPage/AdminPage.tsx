@@ -24,16 +24,18 @@ const AdminPage: React.FC = () => {
   };
 
   return (
-    <div className={styles.adminPage}>
-      <h3>Добавить нового ученика</h3>
-      <AddNewUserForm />
-      <h3>Статистика по ученику</h3>
+    <div className={styles.AdminPage}>
+      <h3>Статистика</h3>
       <UserStatsForm
         setUserStats={setUserStats}
         setUserTrainingTimes={setUserTrainingTimes}
       />
       <UserStats userStats={userStats} userTrainingTimes={userTrainingTimes} />
-      <Button onClick={handleLogout}>Выход</Button>
+      <h3>Добавить нового ученика</h3>
+      <AddNewUserForm />
+      <Button onClick={handleLogout} className={styles.AdminPage__logoutButton}>
+        Выход
+      </Button>
     </div>
   );
 };

@@ -50,32 +50,40 @@ const UserStatsForm: React.FC<UserStatsFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <input
-          type="checkbox"
-          checked={onlyHighFrequency}
-          onChange={() => setOnlyHighFrequency(!onlyHighFrequency)}
-        />
-        Показывать только слова с частотой больше{' '}
-        <input
-          type="text"
-          value={highFrequencyLevel}
-          onChange={(event) =>
-            setHighFrequencyLevel(Number(event.target.value))
-          }
-        />
-        .
-      </label>
-      <label>
-        Фамилия
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </label>
-      <Button type="submit">Поиск ученика</Button>
+    <form onSubmit={handleSubmit} className={styles.UserStatsForm}>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            className={styles.UserStatsForm__checkbox}
+            checked={onlyHighFrequency}
+            onChange={() => setOnlyHighFrequency(!onlyHighFrequency)}
+          />
+          Показывать слова с частотой больше{' '}
+          <input
+            type="number"
+            className={styles.UserStatsForm__frequencyLevelInput}
+            value={highFrequencyLevel}
+            onChange={(event) =>
+              setHighFrequencyLevel(Number(event.target.value))
+            }
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Фамилия
+          <input
+            type="text"
+            className={styles.UserStatsForm__usernameInput}
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </label>
+      </div>
+      <Button type="submit" className={styles.UserStatsForm__submitButton}>
+        Поиск ученика
+      </Button>
     </form>
   );
 };

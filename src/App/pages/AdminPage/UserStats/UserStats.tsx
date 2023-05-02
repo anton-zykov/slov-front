@@ -16,19 +16,23 @@ const UserStats: React.FC<UserStatsProps> = ({
 }) => {
   return (
     <div>
+      <ol>
+        {userStats
+          .sort((a, b) => b.frequency - a.frequency)
+          .map((wordAndFreq) => (
+            <li key={wordAndFreq.word.id}>
+              {wordAndFreq.word.correctWord + ', ' + wordAndFreq.frequency}
+            </li>
+          ))}
+      </ol>
       <ul>
-        {userStats.map((wordAndFreq) => (
-          <li key={wordAndFreq.word.id}>
-            {wordAndFreq.word.correctWord +
-              ', частота ' +
-              wordAndFreq.frequency}
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {userTrainingTimes.map((training) => (
+        {userTrainingTimes.slice(0, 5).map((training) => (
           <li key={String(training.date)}>
-            {training.date.toDateString() + ' ' + training.date.toTimeString()}
+            {training.date.toDateString() +
+              ' ' +
+              training.date.getHours() +
+              ':' +
+              training.date.getMinutes()}
           </li>
         ))}
       </ul>

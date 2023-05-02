@@ -1,0 +1,18 @@
+@use 'styles/mixins.module.scss' as mxn;
+
+.AddNewUserForm {
+  &__submitButton {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  &__newUsernameInput {
+    width: calc(100% - 90px);
+    @include mxn.lineInput;
+  }
+
+  &__ageInput {
+    width: 2em;
+    @include mxn.lineInput;
+  }
+}
