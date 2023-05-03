@@ -1,9 +1,8 @@
 @use 'styles/variables.module.scss' as var;
 @use 'styles/mixins.module.scss' as mxn;
-@import 'Avenir/fonts.module.scss';
 
 body {
-  font-family: 'Avenir-Medium', sans-serif;
+  font-family: sans-serif;
   @include mxn.font-medium;
   background: linear-gradient(270deg, rgba(229, 240, 75, 0.05), rgba(19, 109, 161, 0.05));
   background-size: 400% 400%;
