@@ -11,7 +11,7 @@
   }
 
   &__usernameInput {
-    width: calc(100% - 90px);
+    width: calc(100% - 100px);
     @include mxn.lineInput;
   }
 
