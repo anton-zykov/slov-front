@@ -32,7 +32,9 @@ const UserStats: React.FC<UserStatsProps> = ({
               ' ' +
               training.date.getHours() +
               ':' +
-              training.date.getMinutes()}
+              (training.date.getMinutes() >= 10
+                ? training.date.getMinutes()
+                : '0' + training.date.getMinutes())}
           </li>
         ))}
       </ul>
