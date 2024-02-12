@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3003/api/main/';
-//const baseURL = 'https://slov.onrender.com/api/main/';
+const baseURL =
+  window.location.hostname === 'localhost' || '127.0.0.1'
+    ? 'http://127.0.0.1:3001/api/main/'
+    : window.location.origin + '/api/main/';
 
 export type addNewUserProps = {
   username: string;
