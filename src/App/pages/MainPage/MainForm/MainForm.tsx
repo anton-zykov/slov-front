@@ -21,7 +21,7 @@ const MainForm: React.FC<MainFormProps> = ({
   recieveNewTask,
 }) => {
   const [userLetters, setUserLetters] = React.useState<string[]>(
-    new Array(4).fill('')
+    new Array(10).fill('')
   );
   const [answers, setAnswers] = React.useState<sendUserAnswersResponse | null>(
     null
