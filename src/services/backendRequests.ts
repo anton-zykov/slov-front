@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-const baseURL =
-  window.location.hostname === 'localhost' || '127.0.0.1'
-    ? 'http://127.0.0.1:3001/api/main/'
-    : window.location.origin + '/api/main/';
+const baseURL = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+  ? 'http://127.0.0.1:3001/api/main/'
+  : window.location.origin + '/api/main/';
 
 export type addNewUserProps = {
   username: string;
